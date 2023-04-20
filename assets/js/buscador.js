@@ -1,19 +1,17 @@
+// en esta funcion al hacer click en el boton buscar se busca al digimon y se muestra en pantalla, para esto se utilizó jquery con ajax
+
 $('#buscar').click(function(){
-    console.log("pasa x aqui??")
     $.ajax({
         url: `https://digimon-api.vercel.app/api/digimon/`,
         type:"GET",
         dataType: "json",
         
         success : function(data){
-            console.log("entra al ajax??")
             const buscador = document.querySelector('#buscador')
             let palabra = buscador.value.toLowerCase()
-            console.log("data")
             const listaDigimon = document.querySelector('#lista-digimon')
             listaDigimon.innerHTML=''
             $.each(data,function(i,itm){
-                console.log("palabra "+palabra)
                 let nombre = itm.name.toLowerCase()
                 if(nombre.indexOf(palabra) !== -1){
                     const div = document.createElement("div")
@@ -40,5 +38,4 @@ $('#buscar').click(function(){
             console.log("error "+textStatus)
         }
     })
-    console.log("llega a acá??")
 })
